@@ -1,0 +1,36 @@
+plugins {
+    id 'groovy'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+ext {
+    drivers = ["firefox", "chrome", "chromeHeadless"]
+
+    ext {
+        gebVersion = '4.1'
+        seleniumVersion = '3.14.0'
+        chromeDriverVersion = '92.0.4515.107'
+        geckoDriverVersion = '0.29.1'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+
+    testImplementation 'org.gebish:geb-spock:4.1'
+    testImplementation 'org.seleniumhq.selenium:selenium-support:3.141.59'
+    testImplementation 'org.seleniumhq.selenium:selenium-chrome-driver:3.141.59'
+//    implementation 'junit:junit:4.13.2'
+    testImplementation 'org.seleniumhq.selenium:selenium-firefox-driver:3.141.59'
+}
+
+test {
+    useJUnitPlatform()
+}
