@@ -5,8 +5,8 @@ import pages.MainRwSitePage
 
 class RwMainSpec extends BaseSpec {
 
-    def copyrightTextValue = "© 2021 Belarusian Railway"
-    def buttonsNamesList = ["Passenger Services", "Freight", "Corporate"]
+    final COPYRIGHT_TEXT_VALUE = "© 2021 Belarusian Railway"
+    final BUTTONS_NAMES_LIST = ["Passenger Services", "Freight", "Corporate"]
 
     def "Open rw.by main page"() {
 
@@ -14,17 +14,17 @@ class RwMainSpec extends BaseSpec {
         to MainRwSitePage
 
         and: "Choose english language"
-        englishLanguageButton.click()
+        languageButtonModule.englishLanguageButton.click()
 
         then: "Check 6 news are displayed into the 'News' section"
         newsList.size() >= 6
 
         and: "Check, that text '© 2021 Belarusian Railway' is displayed in the bottom of the page"
-        copyrightTextFirstLine == copyrightTextValue
+        copyrightTextFirstLine == COPYRIGHT_TEXT_VALUE
 
         then: "Check 3 buttons are present in the top part of the page: 'Passenger Services', 'Freight', 'Corporate'"
-        buttonsNamesList[0].equalsIgnoreCase(passengerServiceButton.text())
-        buttonsNamesList[1].equalsIgnoreCase(freightButton.text())
-        buttonsNamesList[2].equalsIgnoreCase(corporateButton.text())
+        BUTTONS_NAMES_LIST[0].equalsIgnoreCase(topButtonModule.passengerServiceButton.text())
+        BUTTONS_NAMES_LIST[1].equalsIgnoreCase(topButtonModule.freightButton.text())
+        BUTTONS_NAMES_LIST[2].equalsIgnoreCase(topButtonModule.corporateButton.text())
     }
 }

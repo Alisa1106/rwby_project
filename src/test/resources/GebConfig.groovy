@@ -5,17 +5,21 @@
 */
 
 
+import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.firefox.FirefoxDriver
 
-{
-    System.setProperty("webdriver.gecko.driver", "C:\\geckodriver\\geckodriver.exe")
-    System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe")
+
+String brow = System.getenv("Browser")
+if (brow == "firefox") {
+    WebDriverManager.firefoxdriver().setup()
+    driver = { new FirefoxDriver() }
+} else {
+    WebDriverManager.chromedriver().setup()
+    driver = { new ChromeDriver() }
 }
 
-driver = { new ChromeDriver() }
-driver = { new FirefoxDriver() }
 
 waiting {
     timeout = 10
@@ -26,7 +30,7 @@ environments {
     // run via “./gradlew chromeTest”
     // See: http://code.google.com/p/selenium/wiki/ChromeDriver
     chrome {
-//        WebDriverManager.chromedriver().setup()
+        WebDriverManager.chromedriver().setup()
         driver = { new ChromeDriver() }
     }
 

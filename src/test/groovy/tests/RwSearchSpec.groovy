@@ -7,9 +7,10 @@ import utils.SpecUtil
 
 class RwSearchSpec extends BaseSpec {
 
-    String randomString = SpecUtil.getRandomString()
-    String searchingBaseUrl = "https://www.rw.by/search/?s=Y&q="
-    String nothingFoundText = "К сожалению, на ваш поисковый запрос ничего не найдено."
+    final RANDOM_STRING = SpecUtil.getRandomString()
+    final SEARCHING_BASE_URL = "https://www.rw.by/search/?s=Y&q="
+    final NOTHING_FOUND_TEXT = "К сожалению, на ваш поисковый запрос ничего не найдено."
+    final RW_SEARCH_PAGE_TITLE = "Результаты поиска - Белорусская железная дорога"
 
     def "Open rw.by main page"() {
 
@@ -17,19 +18,20 @@ class RwSearchSpec extends BaseSpec {
         to MainRwSitePage
 
         and: "Write random string in input field"
-        headerSearchField.value randomString
+        headerSearchField.value RANDOM_STRING
 
         and: "Click search button"
         headerSearchButton.click()
+        SpecUtil.getWait(driver, RW_SEARCH_PAGE_TITLE)
 
         then: "Check title"
         at SearchRwSitePage
 
         and: "Check current URL"
-        currentUrl == searchingBaseUrl + randomString
+        currentUrl == SEARCHING_BASE_URL + RANDOM_STRING
 
         then: "Check text"
-        nothingFoundInfoMessage.text() == nothingFoundText
+        nothingFoundInfoMessage.text() == NOTHING_FOUND_TEXT
 
         when: "Clear search input field"
         searchInputField.value ""

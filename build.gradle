@@ -30,6 +30,7 @@ dependencies {
     testImplementation 'org.seleniumhq.selenium:selenium-firefox-driver:3.141.59'
     testImplementation 'org.apache.commons:commons-lang3:3.12.0'
     testImplementation 'org.seleniumhq.selenium:selenium-api:3.141.59'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:4.4.3'
 }
 
 test {

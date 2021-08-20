@@ -1,12 +1,13 @@
 package tests
 
+
 import pages.GoogleFoundPage
 import pages.GoogleSearchPage
 import pages.MainRwSitePage
 
 class GoogleSearchSpec extends BaseSpec {
 
-    def textValue = "белорусская железная дорога"
+    final TEXT_VALUE = "белорусская железная дорога"
 
     def "Go to google.com page, write text in input field and go to searching site"() {
 
@@ -14,7 +15,7 @@ class GoogleSearchSpec extends BaseSpec {
         to GoogleSearchPage
 
         and: "Write text 'белорусская железная дорога' in input field"
-        searchInputField.value textValue
+        searchInputField.value TEXT_VALUE
 
         and: "Click search button"
         searchButton.click()
@@ -26,10 +27,10 @@ class GoogleSearchSpec extends BaseSpec {
         firstSearchResult.click()
 
         then: "Go to main rw.by page"
-        to MainRwSitePage
+        at MainRwSitePage
 
         when: "Change site language to russian"
-        russianLanguageButton.click()
+        languageButtonModule.russianLanguageButton.click()
 
         then: "Check title"
         at MainRwSitePage
