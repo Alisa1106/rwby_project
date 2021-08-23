@@ -12,7 +12,7 @@ class RwSearchSpec extends BaseSpec {
     final NOTHING_FOUND_TEXT = "К сожалению, на ваш поисковый запрос ничего не найдено."
     final RW_SEARCH_PAGE_TITLE = "Результаты поиска - Белорусская железная дорога"
 
-    def "Open rw.by main page"() {
+    def "Check search on rw.by site"() {
 
         when: "Open rw.by"
         to MainRwSitePage

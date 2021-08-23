@@ -13,7 +13,7 @@ class SpecUtil {
         return RandomStringUtils.random(length, charset.toCharArray())
     }
 
-    static def getWait(WebDriver driver, def titleText) {
+    static def getTitleWait(WebDriver driver, def titleText) {
         new WebDriverWait(driver, 10).until(ExpectedConditions.titleIs(titleText))
     }
 }

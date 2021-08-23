@@ -1,7 +1,5 @@
 package pages
 
-import org.openqa.selenium.support.ui.WebDriverWait
-
 class MainRwSitePage extends RwHeader {
 
     static url = "https://www.rw.by/"

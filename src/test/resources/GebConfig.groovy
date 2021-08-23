@@ -12,14 +12,19 @@ import org.openqa.selenium.firefox.FirefoxDriver
 
 
 String brow = System.getenv("Browser")
-if (brow == "firefox") {
-    WebDriverManager.firefoxdriver().setup()
-    driver = { new FirefoxDriver() }
-} else {
-    WebDriverManager.chromedriver().setup()
-    driver = { new ChromeDriver() }
+switch (brow) {
+    case "chrome":
+        WebDriverManager.chromedriver().setup()
+        driver = { new ChromeDriver() }
+        break
+    case "firefox":
+        WebDriverManager.firefoxdriver().setup()
+        driver = { new FirefoxDriver() }
+        break
+    default:
+        WebDriverManager.firefoxdriver().setup()
+        driver = { new FirefoxDriver() }
 }
-
 
 waiting {
     timeout = 10

@@ -1,8 +1,9 @@
 package tests
 
-import pages.DatePickerModal
+import pages.ChosenTrainTimetableRwPage
+import pages.DatePickerRwModal
 import pages.MainRwSitePage
-import pages.TimetablePage
+import pages.TimetableRwPage
 import utils.SpecUtil
 
 class RwCalendarSpec extends BaseSpec {
@@ -10,8 +11,9 @@ class RwCalendarSpec extends BaseSpec {
     final BREST_CITY = "Брест"
     final MINSK_CITY = "Минск"
     final TIME_TABLE_PAGE_TITLE = "Расписание поездов БЖД | Купить билеты на поезд"
+    final MAIN_PAGE_TITLE = "Официальный сайт - Белорусская железная дорога"
 
-    def "Open rw.by main page"() {
+    def "Check ability to choose route and trip date, print found trains, correct opening trains link and return to main page"() {
 
         when: "Open rw.by"
         to MainRwSitePage
@@ -22,43 +24,49 @@ class RwCalendarSpec extends BaseSpec {
         and: "Write text 'Минск' in 'Куда:' input field"
         toInputField.value MINSK_CITY
 
-        and: "Click calendar `button"
+        and: "Click calendar button"
         calendarButton.click()
 
-        then: "Date picker modal opened"
-        at DatePickerModal
+        then: "Check that date picker modal opened"
+        at DatePickerRwModal
 
         when: "Write date from 5 days from today in date input field"
         neededDate.click()
 
         and: "Click found button"
         foundButton.click()
-        SpecUtil.getWait(driver, TIME_TABLE_PAGE_TITLE)
+        SpecUtil.getTitleWait(driver, TIME_TABLE_PAGE_TITLE)
 
-        then: "Check title"
-        at TimetablePage
+        then: "Check timetable page content"
+        at TimetableRwPage
 
-        and: "Print train name and departure time"
-        int count = 0
-        for (trainRoute in trainsList) {
-            print trainRoute.text() + " - "
-            for (departureTime in departureTimesList) {
-                if (departureTime.equals(departureTime[count])) {
-                    println(departureTime.text())
-                }
-            }
-            count++
+        and: "Print trains names and their departure times"
+        int index = 0
+        for (trainInfo in trainsInfoList) {
+            println trainsList[index].text() + " - " + departureTimesList[index].text()
+            index++
         }
 
         when: "Click first train link"
-        trainName = firstTrainsListLink.text()
+        def trainName = firstTrainsListLink.text()
         firstTrainsListLink.click()
 
-        then: "Check train name"
+        then: "Check chosen train timetable page content"
+        at ChosenTrainTimetableRwPage
+
+        and: "Check train name"
         chosenTrainData.text().substring(6) == trainName
 
         and: "Check text 'Режим курсирования:' is not empty"
         def cruisingDaysText = cruisingDays.text().substring(20)
         cruisingDaysText.length() > 0
+
+        when: "Click go to main page link"
+        goToMainPageLink.click()
+
+        then: "Check that there was a transition to main page"
+        withWindow({ title == MAIN_PAGE_TITLE }) {
+            at MainRwSitePage
+        }
     }
 }

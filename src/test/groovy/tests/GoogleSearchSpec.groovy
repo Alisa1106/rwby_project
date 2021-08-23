@@ -30,7 +30,7 @@ class GoogleSearchSpec extends BaseSpec {
         at MainRwSitePage
 
         when: "Change site language to russian"
-        languageButtonModule.russianLanguageButton.click()
+        languageButtonModule.chooseLanguageButton("РУС").click()
 
         then: "Check title"
         at MainRwSitePage
