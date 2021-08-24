@@ -17,6 +17,11 @@ class GoogleSearchSpec extends BaseSpec {
         and: "Write text 'белорусская железная дорога' in input field"
         searchInputField.value TEXT_VALUE
 
+        then: "Check search button is displayed"
+        waitFor {
+            searchButton.displayed
+        }
+
         and: "Click search button"
         searchButton.click()
 
@@ -30,7 +35,7 @@ class GoogleSearchSpec extends BaseSpec {
         at MainRwSitePage
 
         when: "Change site language to russian"
-        languageButtonModule.chooseLanguageButton("РУС").click()
+        languageButtonModule.russianButton.click()
 
         then: "Check title"
         at MainRwSitePage

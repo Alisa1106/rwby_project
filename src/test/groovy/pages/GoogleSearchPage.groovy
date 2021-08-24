@@ -10,6 +10,6 @@ class GoogleSearchPage extends Page {
     }
     static content = {
         searchInputField { $("input", name: "q") }
-        searchButton { $("div.FPdoLc").find("input", name: "btnK") }
+        searchButton { $("div.aajZCb input.gNO89b") }
     }
 }

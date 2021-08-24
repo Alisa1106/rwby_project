@@ -21,9 +21,16 @@ switch (brow) {
         WebDriverManager.firefoxdriver().setup()
         driver = { new FirefoxDriver() }
         break
+    case "chrome headless":
+        driver = {
+            WebDriverManager.chromedriver().setup()
+            ChromeOptions o = new ChromeOptions()
+            o.addArguments('headless')
+            new ChromeDriver(o)
+        }
+        break
     default:
-        WebDriverManager.firefoxdriver().setup()
-        driver = { new FirefoxDriver() }
+        WebDriverManager.chromedriver().setup()
 }
 
 waiting {
@@ -43,7 +50,7 @@ environments {
     // See: http://code.google.com/p/selenium/wiki/ChromeDriver
     chromeHeadless {
         driver = {
-//			WebDriverManager.chromedriver().setup()
+            WebDriverManager.chromedriver().setup()
             ChromeOptions o = new ChromeOptions()
             o.addArguments('headless')
             new ChromeDriver(o)

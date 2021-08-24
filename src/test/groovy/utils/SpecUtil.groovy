@@ -1,7 +1,9 @@
 package utils
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Closure
 import org.apache.commons.lang3.RandomStringUtils
 import org.openqa.selenium.WebDriver
+import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.ExpectedConditions
 import org.openqa.selenium.support.ui.WebDriverWait
 

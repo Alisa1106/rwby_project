@@ -37,6 +37,7 @@ class RwCalendarSpec extends BaseSpec {
         foundButton.click()
         SpecUtil.getTitleWait(driver, TIME_TABLE_PAGE_TITLE)
 
+
         then: "Check timetable page content"
         at TimetableRwPage
 
@@ -65,8 +66,10 @@ class RwCalendarSpec extends BaseSpec {
         goToMainPageLink.click()
 
         then: "Check that there was a transition to main page"
-        withWindow({ title == MAIN_PAGE_TITLE }) {
-            at MainRwSitePage
+        waitFor {
+            withWindow({ title == MAIN_PAGE_TITLE }) {
+                at MainRwSitePage
+            }
         }
     }
 }

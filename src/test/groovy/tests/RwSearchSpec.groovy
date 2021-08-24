@@ -22,7 +22,7 @@ class RwSearchSpec extends BaseSpec {
 
         and: "Click search button"
         headerSearchButton.click()
-        SpecUtil.getWait(driver, RW_SEARCH_PAGE_TITLE)
+        SpecUtil.getTitleWait(driver, RW_SEARCH_PAGE_TITLE)
 
         then: "Check title"
         at SearchRwSitePage

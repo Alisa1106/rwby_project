@@ -20,6 +20,6 @@ class MainRwSitePage extends RwHeader {
         toInputField { $("#acTo") }
         calendarButton { $("#fTickets .calendar") }
         dateInputField { $("#yDate") }
-        foundButton { $($("#tickets_form input", type: "submit")) }
+        foundButton { $("#tickets_form input", type: "submit") }
     }
 }

@@ -5,17 +5,6 @@ plugins {
 group 'org.example'
 version '1.0-SNAPSHOT'
 
-//ext {
-//    drivers = ["firefox", "chrome", "chromeHeadless"]
-//
-//    ext {
-//        gebVersion = '4.1'
-//        seleniumVersion = '3.14.0'
-//        chromeDriverVersion = '92.0.4515.107'
-//        geckoDriverVersion = '0.29.1'
-//    }
-//}
-
 repositories {
     mavenCentral()
 }
