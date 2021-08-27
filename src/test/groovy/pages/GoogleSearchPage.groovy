@@ -1,15 +1,15 @@
 package pages
 
-import geb.navigator.Navigator
+import geb.Page
 
-class GoogleSearchPage {
+class GoogleSearchPage extends Page {
 
+    static url = "https://www.google.com/"
+    static at = {
+        title == "Google"
+    }
     static content = {
         searchInputField { $("input", name: "q") }
-
-        searchButton {
-            Navigator navigator = $("form", name: "f").find(name: "btnK", type: "submit", "input")
-
-        }
+        searchButton { $("div.aajZCb input.gNO89b") }
     }
 }
